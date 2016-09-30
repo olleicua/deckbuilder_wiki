@@ -1,0 +1,25 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @deck.name
+%p
+  %strong Format:
+  = @deck.format
+%p
+  %strong Commander:
+  = @deck.commander_id
+
+%h2 list
+
+%p
+  %strong Add Card:
+  %input.cardpicker(type="text")
+
+.list
+  - @deck.list.each do |card|
+    .image
+      = image_tag card.image_url
+
+= link_to 'Edit', edit_deck_path(@deck)
+|
+= link_to 'Back', root_path

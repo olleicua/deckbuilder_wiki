@@ -1,0 +1,20 @@
+= form_for(deck) do |f|
+  - if deck.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(deck.errors.count, "error")
+        prohibited this deck from being saved:
+      %ul
+        - deck.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :format
+    = f.select :format, options_for_select(Deck::FORMATS, @deck.format)
+  .field
+    = f.label :commander_id
+    = f.number_field :commander_id
+  .actions
+    = f.submit
